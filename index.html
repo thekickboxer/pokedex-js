@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <section class="content">
+    <section id="pokemon-list" class="content">
         <h1>Pokedex</h1>
 
         <ol id="pokemonList" class="pokemons">
@@ -34,6 +34,36 @@
             <button id="loadMoreButton" type="button">
                 Load More
             </button>
+        </div>
+    </section>
+
+    <section id="pokemon-detail">
+        <div id="pokemon-detail-part-1">
+            <div id="back-button" onclick="closePokemonDetails()">
+                &leftarrow;
+            </div>
+            <span id="detail-name"></span>
+            <span id="detail-number"></span>
+            <div id="detail-types"></div>
+            <div id="div-detail-photo">
+                <img id="detail-photo">
+            </div>
+        </div>
+        <div id="pokemon-detail-part-2">
+            <table>
+                <tr>
+                    <td class="label">Height</td>
+                    <td id="detail-height"></td>
+                </tr>
+                <tr>
+                    <td class="label">Weight</td>
+                    <td id="detail-weight"></td>
+                </tr>
+                <tr>
+                    <td class="label">Abilities</td>
+                    <td id="detail-abilities"></td>
+                </tr>
+            </table>
         </div>
     </section>
 

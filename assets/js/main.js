@@ -7,7 +7,7 @@ let offset = 0;
 
 function convertPokemonToLi(pokemon) {
     return `
-        <li class="pokemon ${pokemon.type}">
+        <li class="pokemon ${pokemon.type}" onclick="openPokemonDetailsByNumber(${pokemon.number})">
             <span class="number">#${pokemon.number}</span>
             <span class="name">${pokemon.name}</span>
 
@@ -45,3 +45,36 @@ loadMoreButton.addEventListener('click', () => {
         loadPokemonItens(offset, limit)
     }
 })
+
+function openPokemonDetailsByNumber(number) {
+
+    pokeApi.getPokemonDetailsByNumber(number).then((pokemon) => {
+
+        document.getElementById("pokemon-list").style.display = "none";
+
+        document.getElementById("pokemon-detail-part-1").className = pokemon.type;
+        
+        document.getElementById("detail-name").innerHTML = pokemon.name;
+        
+        document.getElementById("detail-number").innerHTML = "#" + (pokemon.number + "").padStart(3, '0');
+
+        document.getElementById("detail-types").innerHTML = pokemon.types.map((type) => `<span class="${type}">${type}</span>`).join('');
+
+        document.getElementById("detail-photo").src = pokemon.photo;
+
+        document.getElementById("detail-height").innerHTML = pokemon.height + " cm";
+
+        document.getElementById("detail-weight").innerHTML = pokemon.weight + " kg";
+
+        document.getElementById("detail-abilities").innerHTML = pokemon.abilities.join(', ');
+
+        document.getElementById("pokemon-detail").style.display = "block";
+
+    })
+
+}
+
+function closePokemonDetails() {
+    document.getElementById("pokemon-detail").style.display = "none";
+    document.getElementById("pokemon-list").style.display = "block";
+}
